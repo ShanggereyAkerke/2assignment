@@ -14,7 +14,7 @@ public class Main {
         agency.addProperty(p3);
         agency.addRealtor(r1);
         agency.addRealtor(r2);
-        System.out.println("\nAdd a new apartment");
+        System.out.println("\nAdd a new apartment ");
 
         System.out.print("Address: ");
         scanner.nextLine();
