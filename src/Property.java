@@ -10,10 +10,8 @@ public abstract class Property {
         this.price = price;
         this.isAvailable = true;
     }
-
     public abstract double calculateTax();
 
-    // 🔒 FINAL method
     public final void markSold() {
         isAvailable = false;
     }
