@@ -18,8 +18,14 @@ public class Realtor {
     public int getYearsOfExperience() { return yearsOfExperience; }
     public double getCommissionRate() { return commissionRate; }
 
+    // 🔹 ORIGINAL method
     public double calculateCost(double price) {
         return price * (commissionRate / 100);
+    }
+
+    // 🔹 OVERLOADED method (custom commission)
+    public double calculateCost(double price, double customRate) {
+        return price * (customRate / 100);
     }
 
     @Override

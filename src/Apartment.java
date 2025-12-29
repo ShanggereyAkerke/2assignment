@@ -1,9 +1,7 @@
 public class Apartment extends Property {
-    private int floor;
 
     public Apartment(String address, int squareFootage, double price) {
         super(address, squareFootage, price);
-        this.floor = floor;
     }
     @Override
     public double calculateTax() {
@@ -11,6 +9,6 @@ public class Apartment extends Property {
     }
     @Override
     public String toString() {
-        return "Apartment | " + super.toString() + ", floor: " + floor;
+        return "Apartment | " + super.toString();
     }
 }

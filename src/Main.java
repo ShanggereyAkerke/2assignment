@@ -14,7 +14,7 @@ public class Main {
         agency.addProperty(p3);
         agency.addRealtor(r1);
         agency.addRealtor(r2);
-        System.out.println("\nAdd a new apartment ");
+        System.out.println("\nAdd a new apartment");
 
         System.out.print("Address: ");
         scanner.nextLine();
@@ -46,9 +46,9 @@ public class Main {
         for (Property p : agency.getAvailableProperties()) {
             System.out.println(p);
         }
-        System.out.println("\n=== Tax ===");
-        System.out.println(p1.getAddress() + " tax: $" + p1.calculateTax());
-        System.out.println(p2.getAddress() + " tax: $" + p2.calculateTax());
+        System.out.println("\n===Tax===");
+        System.out.println(p1.getAddress() + " tax: " + p1.calculateTax());
+        System.out.println(p2.getAddress() + " tax: " + p2.calculateTax());
         System.out.println("\n=== Most Experienced Realtor ===");
         Realtor best = agency.findMostExperiencedRealtor();
         System.out.println(best);
