@@ -9,6 +9,6 @@ public class Apartment extends Property {
     }
     @Override
     public String toString() {
-        return "Apartment | " + super.toString();
+        return "Apartment: " + super.toString();
     }
 }

@@ -15,6 +15,7 @@ public class Realtor {
 
     public int getId() { return id; }
     public String getName() { return name; }
+    public String getPhoneNumber() {return phoneNumber;}
     public int getYearsOfExperience() { return yearsOfExperience; }
     public double getCommissionRate() { return commissionRate; }
 

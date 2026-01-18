@@ -8,6 +8,6 @@ public class House extends Property {
     }
     @Override
     public String toString() {
-        return "House | " + super.toString() ;
+        return "House:  " + super.toString() ;
     }
 }
