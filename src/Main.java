@@ -46,6 +46,7 @@ public class Main {
         System.out.println("\n=== AVAILABLE PROPERTIES ===");
         for (Property p : agency.getAvailableProperties()) {
             System.out.println(p);
+
         }
         System.out.println("\n=== TAX CALCULATION ===");
         System.out.println(p1.getAddress() + " tax: $" + p1.calculateTax());
