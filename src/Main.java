@@ -43,12 +43,10 @@ public class Main {
         for (Property p : agency.getProperties()) {
             if (p != null) System.out.println(p);
         }
-
         System.out.println("\n=== AVAILABLE PROPERTIES ===");
         for (Property p : agency.getAvailableProperties()) {
             System.out.println(p);
         }
-
         System.out.println("\n=== TAX CALCULATION ===");
         System.out.println(p1.getAddress() + " tax: $" + p1.calculateTax());
         System.out.println(p2.getAddress() + " tax: $" + p2.calculateTax());
@@ -58,18 +56,13 @@ public class Main {
         System.out.println(best);
         System.out.println("Commission for $" + p2.getPrice() + " property: $" + best.calculateCost(p2.getPrice()));
 
-
-        System.out.println("\n=== DATABASE ===");
-
-
-
         System.out.println("\n Adding properties to database ");
         PropertyDAO.addProperty(p1, "APARTMENT");
         PropertyDAO.addProperty(p2, "HOUSE");
         PropertyDAO.addProperty(p3, "APARTMENT");
         PropertyDAO.addProperty(userApartment, "APARTMENT");
 
-        System.out.println("\n Reading all properties from database ");
+        System.out.println("\n Properties from database ");
         PropertyDAO.getAllProperties();
 
         System.out.println("\n Updating property price (ID 1) ");
@@ -78,23 +71,23 @@ public class Main {
         System.out.println("\n Deleting a property (ID 3) ");
         PropertyDAO.deleteProperty(3);
 
-        System.out.println("\n Properties after update/delete ");
+        System.out.println("\n Properties after update and delete ");
         PropertyDAO.getAllProperties();
 
-        System.out.println("\n Adding realtors to database ");
+        System.out.println("\n Adding realtors to the database ");
         RealtorDAO.addRealtor(r1);
         RealtorDAO.addRealtor(r2);
 
-        System.out.println("\n Reading all realtors from database ");
+        System.out.println("\n Realtors from database ");
         RealtorDAO.getAllRealtors();
 
         System.out.println("\n Updating realtor commission (ID 1)");
         RealtorDAO.updateRealtorCommission(1, 5.0);
 
-        System.out.println("\n Final database state:");
-        System.out.println("\n--- PROPERTIES ---");
+        System.out.println("\n  Database final state:");
+        System.out.println("\n PROPERTIES ");
         PropertyDAO.getAllProperties();
-        System.out.println("\n--- REALTORS ---");
+        System.out.println("\n REALTORS ");
         RealtorDAO.getAllRealtors();
 
         scanner.close();

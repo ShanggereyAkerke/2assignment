@@ -20,7 +20,6 @@ public class PropertyDAO {
             e.printStackTrace();
         }
     }
-
     public static void getAllProperties() {
         String sql = "SELECT * FROM property ORDER BY id";
 
