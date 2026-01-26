@@ -38,7 +38,7 @@ public class PropertyDAO {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error with realtor operation: " + e.getMessage());
         }
     }
 

@@ -1,7 +1,23 @@
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Main {
+    private static boolean firstRun = true;
+
     public static void main(String[] args) {
+        if (firstRun) {
+            firstRun = false;
+            try (Connection conn = DBConnection.getConnection();
+                 Statement st = conn.createStatement()) {
+                System.out.println("Clearing previous database data...");
+                st.executeUpdate("TRUNCATE TABLE property, realtor RESTART IDENTITY");
+                System.out.println("Database cleared. IDs will start from 1.\n");
+            } catch (Exception e) {
+                System.out.println("Could not clear database: " + e.getMessage());
+            }
+        }
+
         Scanner scanner = new Scanner(System.in);
         RealEstateAgency agency = new RealEstateAgency("Astana Agency", "Astana", 10, 5);
 
@@ -17,9 +33,8 @@ public class Main {
         agency.addRealtor(r1);
         agency.addRealtor(r2);
 
-        System.out.println("\n=== ADD A NEW APARTMENT ===");
+        System.out.println("\nADD A NEW APARTMENT");
         System.out.print("Address: ");
-        scanner.nextLine();
         String address = scanner.nextLine();
         System.out.print("Square footage: ");
         int square = scanner.nextInt();
@@ -30,67 +45,67 @@ public class Main {
         Property userApartment = new Apartment(address, square, price);
         agency.addProperty(userApartment);
 
-        System.out.println("\n=== AGENCY INFO ===");
+        System.out.println("\nAGENCY INFO");
         agency.printInfo();
 
-        System.out.println("\n=== ALL PROPERTIES ===");
+        System.out.println("\nALL PROPERTIES");
         for (Property p : agency.getProperties()) {
             if (p != null) System.out.println(p);
         }
 
-        System.out.println("\n=== SORTED BY PRICE ===");
+        System.out.println("\nSORTED BY PRICE");
         agency.sortPropertiesByPrice();
         for (Property p : agency.getProperties()) {
             if (p != null) System.out.println(p);
         }
-        System.out.println("\n=== AVAILABLE PROPERTIES ===");
+
+        System.out.println("\nAVAILABLE PROPERTIES");
         for (Property p : agency.getAvailableProperties()) {
             System.out.println(p);
-
         }
-        System.out.println("\n=== TAX CALCULATION ===");
+
+        System.out.println("\nTAX CALCULATION");
         System.out.println(p1.getAddress() + " tax: $" + p1.calculateTax());
         System.out.println(p2.getAddress() + " tax: $" + p2.calculateTax());
 
-        System.out.println("\n=== MOST EXPERIENCED REALTOR ===");
+        System.out.println("\nMOST EXPERIENCED REALTOR");
         Realtor best = agency.findMostExperiencedRealtor();
         System.out.println(best);
         System.out.println("Commission for $" + p2.getPrice() + " property: $" + best.calculateCost(p2.getPrice()));
 
-        System.out.println("\n Adding properties to database ");
+        System.out.println("\nAdding properties to database");
         PropertyDAO.addProperty(p1, "APARTMENT");
         PropertyDAO.addProperty(p2, "HOUSE");
         PropertyDAO.addProperty(p3, "APARTMENT");
         PropertyDAO.addProperty(userApartment, "APARTMENT");
 
-        System.out.println("\n Properties from database ");
+        System.out.println("\nProperties from database:");
         PropertyDAO.getAllProperties();
 
-        System.out.println("\n Updating property price (ID 1) ");
+        System.out.println("\nUpdating property price (ID 1)...");
         PropertyDAO.updatePrice(1, 210000);
 
-        System.out.println("\n Deleting a property (ID 3) ");
+        System.out.println("\nDeleting a property (ID 3)...");
         PropertyDAO.deleteProperty(3);
 
-        System.out.println("\n Properties after update and delete ");
+        System.out.println("\nProperties after update and delete:");
         PropertyDAO.getAllProperties();
 
-        System.out.println("\n Adding realtors to the database ");
+        System.out.println("\nAdding realtors to the database...");
         RealtorDAO.addRealtor(r1);
         RealtorDAO.addRealtor(r2);
 
-        System.out.println("\n Realtors from database ");
+        System.out.println("\nRealtors from database:");
         RealtorDAO.getAllRealtors();
 
-        System.out.println("\n Updating realtor commission (ID 1)");
+        System.out.println("\nUpdating realtor commission (ID 1)...");
         RealtorDAO.updateRealtorCommission(1, 5.0);
 
-        System.out.println("\n  Database final state:");
-        System.out.println("\n PROPERTIES ");
+        System.out.println("\n DATABASE FINAL STATE");
+        System.out.println("\nPROPERTIES:");
         PropertyDAO.getAllProperties();
-        System.out.println("\n REALTORS ");
+        System.out.println("\nREALTORS:");
         RealtorDAO.getAllRealtors();
-
         scanner.close();
     }
 }
