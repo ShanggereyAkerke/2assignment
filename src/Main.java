@@ -94,8 +94,7 @@ public class Main {
         System.out.println("\nAdding realtors to the database...");
         RealtorDAO.addRealtor(r1);
         RealtorDAO.addRealtor(r2);
-
-        System.out.println("\nRealtors from database:");
+        System.out.println("\nRealtors from database: ");
         RealtorDAO.getAllRealtors();
 
         System.out.println("\nUpdating realtor commission (ID 1)...");
