@@ -1,3 +1,5 @@
+package model;
+
 public class Apartment extends Property {
 
     public Apartment(String address, int squareFootage, double price) {
@@ -5,8 +7,9 @@ public class Apartment extends Property {
     }
     @Override
     public double calculateTax() {
-        return price * 0.01;
+        return getPrice() * 0.01;
     }
+
     @Override
     public String toString() {
         return "Apartment: " + super.toString();
