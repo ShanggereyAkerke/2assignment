@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SimpleServer {
+public class SimpleServer  {
     // Твой исходный список (БД)
     private static List<String> properties = new ArrayList<>(List.of(
             "{\"id\":1, \"type\":\"APARTMENT\", \"address\":\"Qabanbay 23\", \"price\":200000, \"sqft\":120, \"tax\":2000}",
