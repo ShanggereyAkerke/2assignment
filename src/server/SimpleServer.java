@@ -65,6 +65,6 @@ public class SimpleServer  {
         });
 
         server.start();
-        System.out.println("🚀 Backend running on http://localhost:8080");
+        System.out.println("http://localhost:8080");
     }
 }

@@ -31,7 +31,7 @@ public class RealtorDAO {
         try (Connection conn = DBConnection.getConnection();
              Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery("SELECT * FROM realtor ORDER BY id")) {
-            System.out.println("\n=== REALTORS IN DB ===");
+            System.out.println("\n REALTORS IN DB ");
             while (rs.next()) System.out.println("ID: " + rs.getInt("id") + " | Name: " + rs.getString("name") +
                     " | Phone: " + rs.getString("phone_number") + " | Exp: " + rs.getInt("years_of_experience") +
                     " years | Rate: " + rs.getDouble("commission_rate") + "%");
@@ -41,9 +41,10 @@ public class RealtorDAO {
     public static void updateRealtorCommission(int id, double newRate) {
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement("UPDATE realtor SET commission_rate = ? WHERE id = ?")) {
-            ps.setDouble(1, newRate); ps.setInt(2, id);
-            if (ps.executeUpdate() > 0) System.out.println("✓ Commission updated for ID: " + id);
-            else System.out.println("✗ No realtor with ID: " + id);
+            ps.setDouble(1, newRate);
+            ps.setInt(2, id);
+            if (ps.executeUpdate() > 0) System.out.println("Commission updated for ID: " + id);
+            else System.out.println(" No realtor with ID: " + id);
         } catch (Exception e) { e.printStackTrace(); }
     }
 
@@ -51,8 +52,8 @@ public class RealtorDAO {
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement("DELETE FROM realtor WHERE id = ?")) {
             ps.setInt(1, id);
-            if (ps.executeUpdate() > 0) System.out.println("✓ Realtor deleted ID: " + id);
-            else System.out.println("✗ No realtor with ID: " + id);
+            if (ps.executeUpdate() > 0) System.out.println("Realtor deleted ID: " + id);
+            else System.out.println("No realtor with ID: " + id);
         } catch (Exception e) { e.printStackTrace(); }
     }
 }

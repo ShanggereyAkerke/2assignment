@@ -6,10 +6,15 @@ import model.Property;
 public class PropertyDAO {
     public static void addProperty(Property p, String type) {
         String sql = "INSERT INTO property(address, square_footage, price, is_available, type) VALUES (?, ?, ?, ?, ?)";
+
+     //TRY WITH RESOURCES
         try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, p.getAddress()); ps.setInt(2, p.getSquareFootage());
-            ps.setDouble(3, p.getPrice()); ps.setBoolean(4, p.isAvailable()); ps.setString(5, type);
-            ps.executeUpdate(); System.out.println("✓ Property added to DB");
+            ps.setString(1, p.getAddress());
+            ps.setInt(2, p.getSquareFootage());
+            ps.setDouble(3, p.getPrice());
+            ps.setBoolean(4, p.isAvailable());
+            ps.setString(5, type);
+            ps.executeUpdate(); System.out.println("Property added to DB");
         } catch (Exception e) { e.printStackTrace(); }
     }
 
@@ -27,14 +32,14 @@ public class PropertyDAO {
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement("UPDATE property SET price = ? WHERE id = ?")) {
             ps.setDouble(1, newPrice); ps.setInt(2, id);
-            ps.executeUpdate(); System.out.println("✓ Price updated");
+            ps.executeUpdate(); System.out.println("Price updated");
         } catch (Exception e) { e.printStackTrace(); }
     }
 
     public static void deleteProperty(int id) {
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement("DELETE FROM property WHERE id = ?")) {
-            ps.setInt(1, id); ps.executeUpdate(); System.out.println("✓ Property deleted");
+            ps.setInt(1, id); ps.executeUpdate(); System.out.println("Property deleted");
         } catch (Exception e) { e.printStackTrace(); }
     }
 

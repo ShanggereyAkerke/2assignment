@@ -1,5 +1,6 @@
 package model;
 
+
 public class House extends Property {
     public House(String address, int squareFootage, double price) {
         super(address, squareFootage, price);

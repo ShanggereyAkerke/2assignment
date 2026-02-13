@@ -8,7 +8,6 @@ import factory.PropertyFactory;
 import repository.DBConnection;
 import repository.PropertyDAO;
 import repository.RealtorDAO;
-
 import java.sql.*;
 import java.util.*;
 
@@ -17,18 +16,20 @@ public class Main {
 
     public static void main(String[] args) {
         if (firstRun) clearDB();
-
         Scanner scanner = new Scanner(System.in);
         RealEstateAgency agency = new RealEstateAgency("Astana RealEstate Agency", "Astana", 10, 5);
-
+//2 POLYMORPH
         Property p1 = new Apartment("Qabanbay 23", 120, 200000);
         Property p2 = new House("Turan 55", 200, 350000);
         Property p3 = new Apartment("Syganak 16/1", 80, 120000);
         Realtor r1 = new Realtor(1, "Akerke", "77771234567", 5, 4.0);
         Realtor r2 = new Realtor(2, "Kairat", "77051051234", 10, 4.8);
 
-        agency.addProperty(p1); agency.addProperty(p2); agency.addProperty(p3);
-        agency.addRealtor(r1); agency.addRealtor(r2);
+        agency.addProperty(p1);
+        agency.addProperty(p2);
+        agency.addProperty(p3);
+        agency.addRealtor(r1);
+        agency.addRealtor(r2);
 
         System.out.println("ADD NEW PROPERTY ");
         System.out.print("Address: "); String addr = scanner.nextLine();
@@ -66,6 +67,7 @@ public class Main {
         agency.sortPropertiesByPrice();
         for (Property p : agency.getProperties()) if (p != null) System.out.println(p);
 
+        //2 POLYMORPHISM
         System.out.println("\n TAXES ");
         System.out.println(p1.getAddress() + " tax: $" + p1.calculateTax());
         System.out.println(p2.getAddress() + " tax: $" + p2.calculateTax());
@@ -109,6 +111,7 @@ public class Main {
         Property factoryProp = PropertyFactory.createProperty("APARTMENT", "Factory St", 75, 140000);
         System.out.println("   Created: " + factoryProp);
 
+        //LAMBDA
         List<Property> affordable = agency.searchProperties(p -> p.getPrice() < 250000);
         System.out.println("   Affordable (<$250K): " + affordable.size() + " properties");
 

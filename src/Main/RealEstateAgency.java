@@ -7,7 +7,8 @@ import model.Apartment;
 
 public class RealEstateAgency {
     private String name, location;
-    private Property[] properties; private Realtor[] realtors;
+    private Property[] properties;
+    private Realtor[] realtors;
     private int propertyCount = 0, realtorCount = 0;
 
     public RealEstateAgency(String name, String location, int maxProperties, int maxRealtors) {
@@ -15,6 +16,8 @@ public class RealEstateAgency {
         this.properties = new Property[maxProperties];
         this.realtors = new Realtor[maxRealtors];
     }
+
+    //DIP
     public interface PropertyStorage {
         void addProperty(Property p);
         Property[] getAllProperties();

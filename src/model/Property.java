@@ -1,7 +1,9 @@
 package model;
 
-
+//2 Abstraction
 public abstract class Property {
+
+    //2 encapsulation NEEDED
     private final double price;
     private final String address;
     private final int squareFootage;
@@ -13,15 +15,18 @@ public abstract class Property {
         this.price = price;
     }
 
+    //2 USING abstraction
+    //SRP
     public abstract double calculateTax();
+    //2 USING Encapsulation
     public final void markSold() { isAvailable = false; }
-
     public String getAddress() { return address; }
     public double getPrice() { return price; }
     public int getSquareFootage() { return squareFootage; }
     public boolean isAvailable() { return isAvailable; }
 
     @Override public String toString() { return address + ", " + squareFootage + "m², $" + price; }
+    //1 Override
     @Override public boolean equals(Object o) {
         return this == o || (o instanceof Property && address.equals(((Property)o).address));
     }
