@@ -45,8 +45,7 @@ public class SimpleServer  {
                 else if ("GET".equalsIgnoreCase(method)) {
                     response = "[" + String.join(",", properties) + "]";
                 }
-                else if ("POST".equalsIgnoreCase(method)) {
-                    InputStream is = exchange.getRequestBody();
+                else if ("POST".equalsIgnoreCase(method)) {InputStream is = exchange.getRequestBody();
                     String body = new BufferedReader(new InputStreamReader(is)).lines().collect(Collectors.joining("\n"));
                     properties.add(body);
                     response = "{\"status\":\"added\"}";
